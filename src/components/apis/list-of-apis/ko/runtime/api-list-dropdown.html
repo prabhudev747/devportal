@@ -1,0 +1,82 @@
+<div class="input-group mb-3"> 
+    <input type="search" class="form-control form-control-light" aria-label="Search" placeholder="Search APIs"
+    data-bind="textInput: pattern" autofocus />
+    <!--<input type="text" class="form-control" placeholder="Search APIs">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button">Search</button>
+    </div>-->
+  </div>
+  
+  <ul class="list-group" style="list-style: none;">
+    <!-- ko foreach: { data: apiGroups, as: 'group' } -->
+    <li class="list-group-item">
+      <h5 class="mb-1" data-bind="text: group.tag"></h5>
+      <ul class="list-group">
+        <!-- ko foreach: { data: group.items, as: 'item' } -->
+        <li class="list-group-item d-flex justify-content-between align-items-center" style="list-style: none;">
+          <a href="#" role="listitem" class="nav-link text-truncate" data-dismiss
+            data-bind="attr: { href: $component.getReferenceUrl(item) }, css: { 'nav-link-active': $component.selectedApiName() === item.name }">
+            <span data-bind="text: item.displayName"></span>
+            <!-- ko if: item.type === 'soap' -->
+            <span class="badge badge-soap">SOAP</span>
+            <!-- /ko -->
+            <!-- ko if: item.type === 'websocket' -->
+            <span class="badge badge-soap">WebSocket</span>
+            <!-- /ko -->
+            <!-- ko if: item.type === 'graphql' -->
+            <span class="badge badge-soap">GraphQL</span>
+            <!-- /ko -->
+            <!-- ko if: item.apiVersion -->
+            - <span data-bind="text: item.apiVersion"></span>
+            <!-- /ko -->
+          </a>
+        </li>
+        <!-- /ko -->
+      </ul>
+    </li>
+    <!-- /ko -->
+  </ul>
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(() => {
+      // Get the search box and button
+      const $searchBox = $('.form-control');
+      const $searchButton = $('.btn-outline-secondary');
+  
+      // Define a function to handle the search event
+      const handleSearch = () => {
+        // Get the search query
+        const query = $searchBox.val().toLowerCase().trim();
+  
+        // Filter the apiGroups data to show only the matching results
+        $('.list-group-item').each((index, group) => {
+          const $group = $(group);
+          const groupTag = $group.find('h5').text().toLowerCase();
+          const $items = $group.find('.list-group-item');
+  
+          $items.each((index, item) => {
+            const $item = $(item);
+            const itemName = $item.find('span').first().text().toLowerCase();
+  
+            if (groupTag.includes(query) || itemName.includes(query)) {
+              $group.show();
+              $item.show();
+            } else {
+              $item.hide();
+              if ($items.not(':hidden').length === 0) {
+                $group.hide();
+              }
+            }
+          });
+        });
+      };
+  
+      // Add click event listener to the search button
+      $searchButton.click(handleSearch);
+  
+      // Add keyup event listener to the search box
+      $searchBox.keyup(handleSearch);
+    });
+  </script>
+  
