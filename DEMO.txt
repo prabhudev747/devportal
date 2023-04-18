@@ -1,0 +1,53 @@
+for demo
+apis page 1
+exit
+Oauth (devloper portal) 2
+workspace
+tags
+access control(developer portal) 4
+
+
+
+http://www.dneonline.com/calculator.asmx?wsdl
+http://custservices.myseko.com/GetTracking/track/trackservice.asmx?wsdl
+
+
+
+3eea5cc3-fa35-4bc3-ab14-06f17be197f8
+
+d2a0c7c7-cdff-4cb3-afde-32c2a5bc773a
+
+nTu8Q~cWM58egPQ1RIpYJklHNK2PchaypCJMxbNM
+
+53a02eb0-caad-48f0-a7e7-9ac990580681
+
+
+https://sekologisticapilist.developer.azure-api.net/signin
+
+
+
+https://sekologisticapilist.portal.azure-api.net/signin-aad
+
+
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <GetBOLDetails xmlns="http://custservices.myseko.com/">
+            <Request>
+                <WebAuthenticationCreds xmlns="http://webservices.myseko.com/">
+                    <KeyCode>8192Q68AV7K</KeyCode>
+                    <AccountNumber>6dd5cd78-3fe6-46d4-907e-779292cd70cc</AccountNumber>
+                </WebAuthenticationCreds>
+                <CarrierType xmlns="http://webservices.myseko.com/">NorthAmerican</CarrierType>
+                <ShipmentNumber xmlns="http://webservices.myseko.com/">WEST3804399TEST</ShipmentNumber>
+            </Request>
+        </GetBOLDetails>
+    </soap:Body>
+</soap:Envelope>
